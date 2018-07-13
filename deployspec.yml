@@ -3,8 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - cd $HOME
-      - mkdir bin
+      - mkdir $HOME/bin
       - echo install kubectl...
       - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
       - chmod +x ./kubectl
