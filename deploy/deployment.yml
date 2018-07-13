@@ -1,0 +1,15 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example
+spec:
+  selector:
+    matchLabels:
+      app: example
+  template:
+    containers:
+      - name: server
+        image: server:latest
+        ports:
+          - containerPort: 8080
