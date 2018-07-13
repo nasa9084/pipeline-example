@@ -12,7 +12,7 @@ phases:
       - curl -o heptio-authenticator-aws https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-06-05/bin/darwin/amd64/heptio-authenticator-aws
       - chmod +x ./heptio-authenticator-aws
       - cp ./heptio-authenticator-aws $HOME/bin/heptio-authenticator-aws && export PATH=$HOME/bin:$PATH
-      - mkdir .kube
+      - mkdir $HOME/.kube
       - printf "cat <<EOS\n$(curl -s https://s3-us-west-2.amazonaws.com/kube-config-template/kubeconfig-template)\nEOS\n" | sh > $HOME/.kube/config
   build:
     commands:
