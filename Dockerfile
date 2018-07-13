@@ -1,4 +1,4 @@
-FROM go:1.10.0 AS build
+FROM golang:1.10.0 AS build
 
 ADD ./main.go /app/main.go
 RUN go build -o /app/server /app/main.go
