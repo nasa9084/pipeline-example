@@ -3,14 +3,21 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - cd $HOME
+      - mkdir bin
       - echo install kubectl...
       - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
       - chmod +x ./kubectl
+      - cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+      - echo install heptio authenticator
+      - curl -o heptio-authenticator-aws https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-06-05/bin/darwin/amd64/heptio-authenticator-aws
+      - chmod +x ./heptio-authenticator-aws
+      - cp ./heptio-authenticator-aws $HOME/bin/heptio-authenticator-aws && export PATH=$HOME/bin:$PATH
       - mkdir .kube
-      - printf "cat <<EOS\n$(curl -s https://s3-us-west-2.amazonaws.com/kube-config-template/kubeconfig-template)\nEOS\n" | sh > ~/.kube/config
+      - printf "cat <<EOS\n$(curl -s https://s3-us-west-2.amazonaws.com/kube-config-template/kubeconfig-template)\nEOS\n" | sh > $HOME/.kube/config
   build:
     commands:
       - echo Deploy application...
-      - cat ~/.kube/config
-      - ./kubectl apply -f deploy/deployment.yml
-      - ./kubectl apply -f deploy/service.yml
+      - cat $HOME/.kube/config
+      - kubectl apply -f deploy/deployment.yml
+      - kubectl apply -f deploy/service.yml
