@@ -1,0 +1,12 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo install kubectl...
+      - sudo apt install -y kubectl
+  build:
+    commands:
+      - echo Deploy application...
+      - kubectl apply -f https://raw.githubusercontent.com/nasa9084/pipeline-example/master/deploy/deployment.yml
+      - kubectl apply -f https://raw.githubusercontent.com/nasa9084/pipeline-example/master/deploy/service.yml
