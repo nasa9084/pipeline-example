@@ -17,6 +17,6 @@ phases:
   build:
     commands:
       - echo Deploy application...
-      - cat $HOME/.kube/config
+      - kubectl get nodes
       - kubectl apply -f deploy/deployment.yml
       - kubectl apply -f deploy/service.yml
