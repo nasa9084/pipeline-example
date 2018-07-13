@@ -16,6 +16,7 @@ phases:
       - heptio-authenticator-aws help
       - mkdir $HOME/.kube
       - printf "cat <<EOS\n$(curl -s https://s3-us-west-2.amazonaws.com/kube-config-template/kubeconfig-template)\nEOS\n" | sh > $HOME/.kube/config
+      - aws s3 ls
       - kubectl get svc
   build:
     commands:
