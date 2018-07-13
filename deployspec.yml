@@ -8,15 +8,17 @@ phases:
       - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
       - chmod +x ./kubectl
       - cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+      - kubectl version --short --client
       - echo install heptio authenticator
       - curl -o heptio-authenticator-aws https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-06-05/bin/linux/amd64/heptio-authenticator-aws
       - chmod +x ./heptio-authenticator-aws
       - cp ./heptio-authenticator-aws $HOME/bin/heptio-authenticator-aws && export PATH=$HOME/bin:$PATH
+      - heptio-authenticator-aws help
       - mkdir $HOME/.kube
       - printf "cat <<EOS\n$(curl -s https://s3-us-west-2.amazonaws.com/kube-config-template/kubeconfig-template)\nEOS\n" | sh > $HOME/.kube/config
+      - kubectl get svc
   build:
     commands:
       - echo Deploy application...
-      - kubectl get nodes
       - kubectl apply -f deploy/deployment.yml
       - kubectl apply -f deploy/service.yml
