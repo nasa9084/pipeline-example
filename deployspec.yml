@@ -11,5 +11,6 @@ phases:
   build:
     commands:
       - echo Deploy application...
+      - cat ~/.kube/config
       - ./kubectl apply -f deploy/deployment.yml
       - ./kubectl apply -f deploy/service.yml
