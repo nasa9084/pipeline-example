@@ -11,5 +11,6 @@ phases:
   build:
     commands:
       - echo Deploy application...
+      - ls
       - ./kubectl apply -f https://raw.githubusercontent.com/nasa9084/pipeline-example/master/deploy/deployment.yml
       - ./kubectl apply -f https://raw.githubusercontent.com/nasa9084/pipeline-example/master/deploy/service.yml
