@@ -8,8 +8,9 @@ spec:
     matchLabels:
       app: example
   template:
-    containers:
-      - name: server
-        image: 353070403235.dkr.ecr.us-west-2.amazonaws.com/example:latest
-        ports:
-          - containerPort: 8080
+    spec:
+      containers:
+        - name: server
+          image: 353070403235.dkr.ecr.us-west-2.amazonaws.com/example:latest
+          ports:
+            - containerPort: 8080
