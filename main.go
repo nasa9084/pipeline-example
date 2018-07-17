@@ -11,6 +11,7 @@ func main() { os.Exit(exec()) }
 func exec() int {
 	http.HandleFunc("/", healthcheckHandler)
 	http.HandleFunc("/users", userListHandler)
+	http.HandleFunc("/user/1", userHandler)
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Print(err)
 		return 1
