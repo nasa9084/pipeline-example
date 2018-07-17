@@ -19,5 +19,5 @@ func exec() int {
 
 func healthcheckHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"status": "ok"}`))
+	w.Write([]byte(`{"status": "ok!"}`))
 }
