@@ -21,3 +21,8 @@ func healthcheckHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte(`{"status": "ok"}`))
 }
+
+func userListHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(`{"users": [{"user_id": 1, "username": "foo"}, {"user_id": 2, "username": "bar"}]}`))
+}
