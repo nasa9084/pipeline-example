@@ -15,5 +15,6 @@ spec:
       containers:
         - name: server
           image: 353070403235.dkr.ecr.us-west-2.amazonaws.com/example:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080

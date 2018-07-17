@@ -20,5 +20,5 @@ phases:
   build:
     commands:
       - echo Deploy application...
-      - kubectl apply -f deploy/deployment.yml
+      - kubectl set image -f deploy/deployment.yml server=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:$(git rev-parse HEAD) --local -o yaml | kubectl apply -f -
       - kubectl apply -f deploy/service.yml
