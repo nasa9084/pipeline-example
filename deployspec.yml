@@ -17,8 +17,9 @@ phases:
       - mkdir $HOME/.kube
       - printf "cat <<EOS\n$(curl -s https://s3-us-west-2.amazonaws.com/kube-config-template/kubeconfig-template)\nEOS\n" | sh > $HOME/.kube/config
       - kubectl get svc
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
     commands:
       - echo Deploy application...
-      - kubectl set image -f deploy/deployment.yml server=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:$(git rev-parse HEAD) --local -o yaml | kubectl apply -f -
+      - kubectl set image -f deploy/deployment.yml server=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:$IMAGE_TAG --local -o yaml | kubectl apply -f -
       - kubectl apply -f deploy/service.yml
